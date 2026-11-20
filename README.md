@@ -45,8 +45,8 @@ docker container run --rm --name stock-market -p 5000:5000 stock-market:2.0
 
 ```bash
 docker login
-docker image tag stock-market:2.0 <usuario-dockerhub>/stock-market:2.0
-docker image push <usuario-dockerhub>/stock-market:2.0
+docker image tag stock-market:2.0 crismo24/stock-market:2.0
+docker image push crismo24/stock-market:2.0
 ```
 
 ## 3. Despliegue en AWS EC2
@@ -59,7 +59,7 @@ La instancia se crea en el entorno **Sandbox** de AWS Academy Cloud Foundations.
    - **Instance type:** `t2.micro` o `t3.micro`
    - **Key pair:** crear `demo_docker` (archivo `.pem`). Solo se necesita para conectarse por SSH.
    - **Network settings:** marcar *Allow SSH traffic* y *Allow HTTP traffic from the internet*.
-   - **Advanced details › User data:** pegar `ec2-user-data.sh` con el usuario de Docker Hub.
+   - **Advanced details › User data:** pegar `ec2-user-data.sh`.
 2. Lanzar la instancia y esperar unos 3 minutos, mientras el script instala Docker y levanta el contenedor.
 3. Copiar el **Public IPv4 DNS** y abrir `http://<public-dns>/` en el navegador. Debe ser `http`, no `https`.
 
@@ -71,7 +71,7 @@ Opción manual por SSH, que es el camino de la guía:
 ssh -i demo_docker.pem ubuntu@<public-dns>
 # Instalar Docker: https://docs.docker.com/engine/install/ubuntu/
 sudo usermod -aG docker ubuntu && exit   # volver a entrar para aplicar el grupo
-docker run -d --name stock-market --restart unless-stopped -p 80:5000 <usuario-dockerhub>/stock-market:2.0
+docker run -d --name stock-market --restart unless-stopped -p 80:5000 crismo24/stock-market:2.0
 ```
 
 ## 4. Apagado
@@ -81,5 +81,5 @@ docker run -d --name stock-market --restart unless-stopped -p 80:5000 <usuario-d
 ## Evidencias
 
 - Repositorio: este repositorio, con el código fuente y el `Dockerfile`.
-- Imagen: `https://hub.docker.com/r/<usuario-dockerhub>/stock-market`
+- Imagen: `https://hub.docker.com/r/crismo24/stock-market`
 - Capturas en `evidencias/`: el servicio respondiendo en el DNS público de la EC2 y la consola de EC2 con la instancia en ejecución.

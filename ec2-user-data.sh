@@ -1,10 +1,10 @@
 #!/bin/bash
 # EC2 "User data" script (Ubuntu 24.04). Runs once at first boot as root:
 # installs Docker from the official repository and starts the service on port 80.
-# Replace DOCKERHUB_USER before pasting it into the EC2 launch wizard.
+# Paste this script into the EC2 launch wizard (Advanced details > User data).
 set -euxo pipefail
 
-DOCKERHUB_USER="YOUR_DOCKERHUB_USER"
+DOCKERHUB_USER="crismo24"
 IMAGE="${DOCKERHUB_USER}/stock-market:2.0"
 
 apt-get update
