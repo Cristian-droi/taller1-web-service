@@ -65,6 +65,12 @@ La instancia se crea en el entorno **Sandbox** de AWS Academy Cloud Foundations.
 
 > El security group abre el puerto **80**, pero Flask y gunicorn escuchan en el **5000**. Por eso el contenedor se publica con `-p 80:5000`.
 
+Opción por AWS CLI, por ejemplo desde la terminal del Sandbox. Hace lo mismo que los pasos anteriores:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/Cristian-droi/taller1-web-service/main/deploy-ec2.sh | bash
+```
+
 Opción manual por SSH, que es el camino de la guía:
 
 ```bash
