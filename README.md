@@ -86,6 +86,27 @@ docker run -d --name stock-market --restart unless-stopped -p 80:5000 crismo24/s
 
 ## Evidencias
 
-- Repositorio: este repositorio, con el código fuente y el `Dockerfile`.
-- Imagen: `https://hub.docker.com/r/crismo24/stock-market`
-- Capturas en `evidencias/`: el servicio respondiendo en el DNS público de la EC2 y la consola de EC2 con la instancia en ejecución.
+| Entregable | Enlace |
+|---|---|
+| Código fuente y `Dockerfile` | https://github.com/Cristian-droi/taller1-web-service |
+| Imagen de contenedor | https://hub.docker.com/r/crismo24/stock-market (`crismo24/stock-market:2.0`) |
+| Servicio en la nube | http://ec2-34-201-145-22.compute-1.amazonaws.com/ |
+
+El despliegue se hizo el 2026-11-19 en `us-east-1` sobre la instancia `demo_docker` (`i-0fa36c7a1836494ac`, Ubuntu 24.04, `t3.micro`). Después de tomar las evidencias, la instancia se terminó para no consumir créditos, así que la URL pública ya no responde. Las capturas dejan constancia del funcionamiento.
+
+**Servicio respondiendo en el DNS público de la EC2.** Muestra el cierre promedio de GOOGL desde 2020-01-01 y los últimos 10 registros.
+
+![Servicio en la URL pública](evidencias/01-servicio-url-publica.png)
+
+**Consola de EC2 con la instancia `demo_docker` en ejecución**, con su DNS e IP públicos.
+
+![Consola EC2](evidencias/02-consola-ec2-instancia.png)
+
+Validación de la API desde fuera de AWS:
+
+```bash
+$ curl http://ec2-34-201-145-22.compute-1.amazonaws.com/health
+{"status":"ok"}
+$ curl "http://ec2-34-201-145-22.compute-1.amazonaws.com/api/stock/GOOGL?start=2024-01-01&end=2024-12-31"
+{"average_close":163.71,"end":"2024-12-31","last_close":191.24,"records":251,"start":"2024-01-01","ticker":"GOOGL"}
+```
